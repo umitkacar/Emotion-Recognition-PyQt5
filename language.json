@@ -1,0 +1,83 @@
+{
+
+    "tab_General": {
+        "English": "GENERAL",
+        "Turkish": "GENEL"
+    },
+
+    "tab_EEG": {
+        "English": "Electroencephalogram (EEG)",
+        "Turkish": "Elektroensefalografi (EEG)"
+    },
+
+    "tab_EEG_Model": {
+        "English": "EEG - Model Training",
+        "Turkish": "EEG - Model Eğitimi"
+    },
+
+    "tab_PPG": {
+        "English": "Photoplethysmogram (PPG)",
+        "Turkish": "Fotopletismografi (PPG)"
+    },
+
+    "tab_Camera": {
+        "English": "Camera",
+        "Turkish": "Kamera"
+    },
+
+    "pushButton_EEG_start": {
+        "English": "Start",
+        "Turkish": "Başlat"
+    },
+
+    "pushButton_EEG_stop": {
+        "English": "Stop",
+        "Turkish": "Durdur"
+    },
+
+    "pushButton_EEG_Model_process_raw_data": {
+        "English": "Process Raw Data",
+        "Turkish": "Ham Veriyi İşle"
+    },
+
+    "pushButton_EEG_Model_add_class_label": {
+        "English": "Add Class Label",
+        "Turkish": "Sınıf Etiketi Ekle"
+    },
+
+    "label_EEG_Model_select": {
+        "English": "Select Model:",
+        "Turkish": "Modeli Seç:"
+    },
+
+    "pushButton_EEG_Model_train": {
+        "English": "Train model",
+        "Turkish": "Modeli Eğit"
+    },
+
+    "pushButton_EEG_Model_test": {
+        "English": "Test model",
+        "Turkish": "Modeli Test Et"
+    },
+
+    "pushButton_EEG_Model_result": {
+        "English": "Show Result",
+        "Turkish": "Sonuç Göster"
+    },
+
+    "pushButton_camera_open": {
+        "English": "Open",
+        "Turkish": "Aç"
+    },
+
+    "pushButton_camera_close": {
+        "English": "Close",
+        "Turkish": "Kapat"
+    },
+
+    "checkBox_face_detect": {
+        "English": "Detect Face",
+        "Turkish": "Yüzü Tespit Et"
+    }
+
+}

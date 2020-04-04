@@ -1,0 +1,74 @@
+{
+
+    "raw_data_eeg_path": "/home/umit/xData/DeapEEG/data_preprocessed_python/",
+
+    "train_data_eeg_path": "/home/umit/xData/DeapEEG/data/train_data_eeg.dat",
+    "train_label_valance_path": "/home/umit/xData/DeapEEG/data/train_label_valance.dat",
+    "train_label_arousal_path": "/home/umit/xData/DeapEEG/data/train_label_arousal.dat",
+    "train_label_valance_class_path": "/home/umit/xData/DeapEEG/data/train_label_valance_class.dat",
+    "train_label_arousal_class_path": "/home/umit/xData/DeapEEG/data/train_label_arousal_class.dat",
+
+    "test_data_eeg_path": "/home/umit/xData/DeapEEG/data/test_data_eeg.dat",
+    "test_label_valance_path": "/home/umit/xData/DeapEEG/data/test_label_valance.dat",
+    "test_label_arousal_path": "/home/umit/xData/DeapEEG/data/test_label_arousal.dat",
+    "test_label_valance_class_path": "/home/umit/xData/DeapEEG/data/test_label_valance_class.dat",
+    "test_label_arousal_class_path": "/home/umit/xData/DeapEEG/data/test_label_arousal_class.dat",
+
+    "model_valance_save_path": "/home/umit/xData/DeapEEG/data/model_valance.dat",
+    "model_arousal_save_path": "/home/umit/xData/DeapEEG/data/model_arousal.dat",
+
+    "label_threshold": 4.5,
+
+    "nUser_total_num": 32,
+    "nUser_train_head": 1,
+    "nUser_train_end": 24,
+    "nUser_train_step": 1,
+    "nUser_test_head": 25,
+    "nUser_test_end": 32,
+    "nUser_test_step": 1,
+
+    "nTrial_total_num": 40,
+    "nTrial_train_head": 1,
+    "nTrial_train_end": 40,
+    "nTrial_train_step": 1,
+    "nTrial_test_head": 1,
+    "nTrial_test_end": 40,
+    "nTrial_test_step": 1,
+
+    "nTime_total_num": 8064,
+    "nTime_head": 384,
+    "nTime_end": 8064,
+    "nTime_step": 2000,
+    "nTime_stepX": 7679,
+
+    "nChannel": {
+
+        "AF3": 1,
+        "F7": 3,
+        "F3": 2,
+        "FC5": 4,
+        "T7": 7,
+        "P7": 11,
+        "O1": 13,
+        "O2": 31,
+        "P8": 29,
+        "T8": 25,
+        "FC6": 21,
+        "F4": 19,
+        "F8": 20,
+        "AF4": 17
+
+    },
+
+    "nChannel_ON": {
+
+        "AF3": 1,
+        "F7": 3,
+        "F3": 2,
+        "FC5": 4,
+        "T7": 7
+    }
+
+
+
+}
