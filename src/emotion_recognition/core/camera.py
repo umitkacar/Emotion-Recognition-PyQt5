@@ -5,9 +5,18 @@ import time
 import cv2
 import numpy as np
 from loguru import logger
-from mtcnn import MTCNN
 
 from emotion_recognition.models.face import BoundingBox, FaceDetection, FaceDetectionResult
+
+# Lazy import MTCNN to avoid TensorFlow dependency on import
+try:
+    from mtcnn import MTCNN
+
+    MTCNN_AVAILABLE = True
+except ImportError:
+    MTCNN = None  # type: ignore
+    MTCNN_AVAILABLE = False
+    logger.warning("MTCNN not available. Install with: pip install mtcnn tensorflow")
 
 
 class CameraManager:
@@ -69,8 +78,12 @@ class CameraManager:
             self._capture.set(cv2.CAP_PROP_FRAME_HEIGHT, self.height)
             self._capture.set(cv2.CAP_PROP_FPS, self.fps)
 
-            # Initialize face detector
-            self._detector = MTCNN()
+            # Initialize face detector if available
+            if MTCNN_AVAILABLE and MTCNN is not None:
+                self._detector = MTCNN()
+            else:
+                self._detector = None
+                logger.warning("Face detection disabled - MTCNN not available")
 
             self._is_opened = True
             logger.info(f"Camera {self.camera_index} opened successfully")

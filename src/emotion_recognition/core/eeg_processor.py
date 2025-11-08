@@ -121,11 +121,7 @@ class EEGProcessor:
             )
 
             # Create EEG data object
-            eeg_data = EEGData(
-                data=eeg_array, label=emotion_label, user_id=user_id, trial_id=trial_id
-            )
-
-            return eeg_data
+            return EEGData(data=eeg_array, label=emotion_label, user_id=user_id, trial_id=trial_id)
 
         except Exception as e:
             logger.error(f"Error extracting trial {trial_id} for user {user_id}: {e}")

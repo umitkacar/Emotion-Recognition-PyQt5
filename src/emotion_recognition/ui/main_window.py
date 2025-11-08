@@ -1,7 +1,6 @@
 """Modern main window with Material Design, animations, and icons."""
 
 import qtawesome as qta
-from loguru import logger
 from PyQt6.QtCore import (
     Qt,
     QTimer,
@@ -573,7 +572,7 @@ class MainWindow(QMainWindow):
             frame = self.camera_manager.draw_face_boxes(frame, detection_result)
 
         # Convert to QImage and display
-        height, width, channel = frame.shape
+        height, width, _channel = frame.shape
         bytes_per_line = 3 * width
         q_image = QImage(frame.data, width, height, bytes_per_line, QImage.Format.Format_RGB888)
         pixmap = QPixmap.fromImage(q_image)

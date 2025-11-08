@@ -151,7 +151,6 @@ QCheckBox::indicator:hover {
 QCheckBox::indicator:checked {
     background-color: #4CAF50;
     border: 2px solid #4CAF50;
-    image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0id2hpdGUiIGQ9Ik02LjUgMTEuNUwzIDhsMS41LTEuNSA 2IDJMOS41IDMgMTEgNS41eiIvPjwvc3ZnPg==);
 }
 
 /* Labels */

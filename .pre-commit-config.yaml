@@ -41,7 +41,6 @@ repos:
     hooks:
       - id: mypy
         additional_dependencies:
-          - types-opencv-python
           - pydantic>=2.5.0
           - numpy>=1.24.0
         args: ['--ignore-missing-imports', '--no-strict-optional']

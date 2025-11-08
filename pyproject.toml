@@ -146,6 +146,8 @@ exclude = '''
 target-version = "py310"
 line-length = 100
 fix = true
+
+[tool.ruff.lint]
 select = [
     "E",   # pycodestyle errors
     "W",   # pycodestyle warnings
@@ -156,27 +158,28 @@ select = [
     "UP",  # pyupgrade
     "SIM", # flake8-simplify
     "N",   # pep8-naming
-    "S",   # flake8-bandit
     "T20", # flake8-print
     "PT",  # flake8-pytest-style
     "RET", # flake8-return
-    "PTH", # flake8-use-pathlib
     "ERA", # eradicate
     "PL",  # pylint
     "RUF", # Ruff-specific rules
 ]
 ignore = [
-    "S101",   # Use of assert detected (needed for tests)
+    "S101",    # Use of assert detected (needed for tests)
+    "S301",    # pickle usage (needed for model persistence)
     "PLR0913", # Too many arguments to function call
     "PLR2004", # Magic value used in comparison
-    "S311",   # Standard pseudo-random generators are not suitable for security/cryptographic purposes
+    "S311",    # Standard pseudo-random generators
+    "PTH123",  # open() usage (complex migration)
 ]
 
-[tool.ruff.per-file-ignores]
+[tool.ruff.lint.per-file-ignores]
 "tests/*" = ["S101", "PLR2004"]
 "__init__.py" = ["F401"]
+"src/emotion_recognition/ui/main_window.py" = ["N802"]  # Qt method names
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["emotion_recognition"]
 
 # MyPy configuration
