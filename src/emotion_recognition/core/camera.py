@@ -1,7 +1,6 @@
 """Camera management with face detection."""
 
 import time
-from typing import Optional
 
 import cv2
 import numpy as np
@@ -34,10 +33,10 @@ class CameraManager:
         self.height = height
         self.fps = fps
 
-        self._capture: Optional[cv2.VideoCapture] = None
-        self._detector: Optional[MTCNN] = None
+        self._capture: cv2.VideoCapture | None = None
+        self._detector: MTCNN | None = None
         self._is_opened = False
-        self._last_frame: Optional[np.ndarray] = None
+        self._last_frame: np.ndarray | None = None
 
         logger.info(
             f"CameraManager initialized: index={camera_index}, "
@@ -99,7 +98,7 @@ class CameraManager:
         """Check if camera is opened."""
         return self._is_opened and self._capture is not None and self._capture.isOpened()
 
-    def get_frame(self) -> Optional[np.ndarray]:
+    def get_frame(self) -> np.ndarray | None:
         """Capture a frame from the camera.
 
         Returns:

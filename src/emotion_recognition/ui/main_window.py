@@ -1,20 +1,14 @@
 """Modern main window with Material Design, animations, and icons."""
 
-import sys
-from typing import Optional
-
 import qtawesome as qta
 from loguru import logger
 from PyQt6.QtCore import (
-    QEasingCurve,
-    QPropertyAnimation,
     Qt,
     QTimer,
     pyqtSignal,
 )
 from PyQt6.QtGui import QFont, QImage, QPixmap
 from PyQt6.QtWidgets import (
-    QApplication,
     QCheckBox,
     QComboBox,
     QFrame,
@@ -73,7 +67,7 @@ class MainWindow(QMainWindow):
         self.is_animating = False
 
         # EEG visualization state
-        self.eeg_user_data: Optional[dict] = None
+        self.eeg_user_data: dict | None = None
         self.eeg_current_user = settings.n_user_test_start
         self.eeg_current_trial = 0
         self.eeg_current_time = 384
@@ -129,19 +123,11 @@ class MainWindow(QMainWindow):
         self.tab_ml = self._create_ml_tab()
 
         # Add tabs with icons
-        self.tabs.addTab(
-            self.tab_general, qta.icon("fa5s.cog", color="#4CAF50"), "  General  "
-        )
-        self.tabs.addTab(
-            self.tab_eeg, qta.icon("fa5s.brain", color="#2196F3"), "  EEG  "
-        )
+        self.tabs.addTab(self.tab_general, qta.icon("fa5s.cog", color="#4CAF50"), "  General  ")
+        self.tabs.addTab(self.tab_eeg, qta.icon("fa5s.brain", color="#2196F3"), "  EEG  ")
         self.tabs.addTab(self.tab_ppg, qta.icon("fa5s.heartbeat", color="#f44336"), "  PPG  ")
-        self.tabs.addTab(
-            self.tab_camera, qta.icon("fa5s.camera", color="#FF9800"), "  Camera  "
-        )
-        self.tabs.addTab(
-            self.tab_ml, qta.icon("fa5s.robot", color="#9C27B0"), "  ML Models  "
-        )
+        self.tabs.addTab(self.tab_camera, qta.icon("fa5s.camera", color="#FF9800"), "  Camera  ")
+        self.tabs.addTab(self.tab_ml, qta.icon("fa5s.robot", color="#9C27B0"), "  ML Models  ")
 
         main_layout.addWidget(self.tabs)
 
@@ -292,9 +278,7 @@ class MainWindow(QMainWindow):
 
         # Placeholder for PPG functionality
         placeholder = QLabel("PPG Functionality Coming Soon")
-        placeholder.setStyleSheet(
-            "font-size: 18pt; font-weight: bold; color: #888888;"
-        )
+        placeholder.setStyleSheet("font-size: 18pt; font-weight: bold; color: #888888;")
         placeholder.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         icon_label = QLabel()
@@ -344,9 +328,7 @@ class MainWindow(QMainWindow):
         self.label_camera = QLabel()
         self.label_camera.setMinimumSize(640, 480)
         self.label_camera.setMaximumSize(1280, 720)
-        self.label_camera.setSizePolicy(
-            QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding
-        )
+        self.label_camera.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
         self.label_camera.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.label_camera.setFrameShape(QFrame.Shape.Box)
         self.label_camera.setText("Camera feed will appear here")
@@ -486,9 +468,7 @@ class MainWindow(QMainWindow):
 
         return card
 
-    def _create_icon_button(
-        self, text: str, icon, primary: bool = True
-    ) -> QPushButton:
+    def _create_icon_button(self, text: str, icon, primary: bool = True) -> QPushButton:
         """Create a button with icon.
 
         Args:
@@ -595,9 +575,7 @@ class MainWindow(QMainWindow):
         # Convert to QImage and display
         height, width, channel = frame.shape
         bytes_per_line = 3 * width
-        q_image = QImage(
-            frame.data, width, height, bytes_per_line, QImage.Format.Format_RGB888
-        )
+        q_image = QImage(frame.data, width, height, bytes_per_line, QImage.Format.Format_RGB888)
         pixmap = QPixmap.fromImage(q_image)
 
         # Scale to fit label while maintaining aspect ratio
@@ -660,9 +638,7 @@ class MainWindow(QMainWindow):
                     return
 
                 # Load next user data
-                self.eeg_user_data = self.eeg_processor.load_user_data(
-                    self.eeg_current_user
-                )
+                self.eeg_user_data = self.eeg_processor.load_user_data(self.eeg_current_user)
 
     # ML tab methods
     def _process_raw_data(self) -> None:

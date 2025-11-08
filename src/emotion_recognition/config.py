@@ -70,9 +70,7 @@ class Settings(BaseSettings):
     camera_update_interval: int = Field(
         default=33, ge=10, le=1000, description="Camera update interval in ms"
     )
-    max_cache_size: int = Field(
-        default=1000, ge=100, le=10000, description="Maximum cache size"
-    )
+    max_cache_size: int = Field(default=1000, ge=100, le=10000, description="Maximum cache size")
 
     # Machine Learning
     default_ml_model: Literal["KNN", "SVM", "PCA+KNN", "PCA+SVM"] = Field(

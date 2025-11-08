@@ -1,7 +1,5 @@
 """EEG visualization widget with matplotlib."""
 
-from typing import Optional
-
 import numpy as np
 from loguru import logger
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
@@ -189,7 +187,9 @@ class EEGPlotWidget(QWidget):
         arousal = eeg_data.label.arousal
 
         # Plot point
-        ax.scatter(valence, arousal, marker="o", c="#4CAF50", s=100, edgecolors="white", linewidths=2)
+        ax.scatter(
+            valence, arousal, marker="o", c="#4CAF50", s=100, edgecolors="white", linewidths=2
+        )
 
         # Plot quadrant lines
         ax.axvline(5, color="#f44336", linestyle="--", linewidth=1.5, alpha=0.7)
@@ -202,9 +202,7 @@ class EEGPlotWidget(QWidget):
         ax.text(7, 2.5, "LALV", ha="center", va="center", fontsize=10, color="#b0b0b0")
 
         # Styling
-        ax.set_title(
-            "Arousal-Valence Space", color="#FF9800", fontsize=12, fontweight="bold"
-        )
+        ax.set_title("Arousal-Valence Space", color="#FF9800", fontsize=12, fontweight="bold")
         ax.set_xlabel("Valence", color="#b0b0b0")
         ax.set_ylabel("Arousal", color="#b0b0b0")
         ax.set_xlim([1, 9])

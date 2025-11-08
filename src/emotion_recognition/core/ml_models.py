@@ -2,7 +2,7 @@
 
 import pickle
 from pathlib import Path
-from typing import Dict, Literal, Optional, Tuple
+from typing import Literal
 
 import numpy as np
 from loguru import logger
@@ -28,29 +28,29 @@ class MLModelManager:
         self.settings = settings
 
         # Models for arousal and valence
-        self.arousal_model: Optional[object] = None
-        self.valence_model: Optional[object] = None
+        self.arousal_model: object | None = None
+        self.valence_model: object | None = None
 
         # PCA transformers (if using PCA)
-        self.arousal_pca: Optional[PCA] = None
-        self.valence_pca: Optional[PCA] = None
+        self.arousal_pca: PCA | None = None
+        self.valence_pca: PCA | None = None
 
         # Training data (kept for reference)
-        self.train_data: Optional[np.ndarray] = None
-        self.train_valence: Optional[np.ndarray] = None
-        self.train_arousal: Optional[np.ndarray] = None
+        self.train_data: np.ndarray | None = None
+        self.train_valence: np.ndarray | None = None
+        self.train_arousal: np.ndarray | None = None
 
         # Test data
-        self.test_data: Optional[np.ndarray] = None
-        self.test_valence: Optional[np.ndarray] = None
-        self.test_arousal: Optional[np.ndarray] = None
+        self.test_data: np.ndarray | None = None
+        self.test_valence: np.ndarray | None = None
+        self.test_arousal: np.ndarray | None = None
 
         # Predictions
-        self.pred_valence: Optional[np.ndarray] = None
-        self.pred_arousal: Optional[np.ndarray] = None
+        self.pred_valence: np.ndarray | None = None
+        self.pred_arousal: np.ndarray | None = None
 
         # Current model type
-        self.current_model_type: Optional[ModelType] = None
+        self.current_model_type: ModelType | None = None
 
         logger.info("MLModelManager initialized")
 
@@ -264,7 +264,7 @@ class MLModelManager:
             logger.error(f"Error during prediction: {e}")
             return False
 
-    def get_results(self) -> Optional[Dict[str, any]]:
+    def get_results(self) -> dict[str, any] | None:
         """Get prediction results and metrics.
 
         Returns:
@@ -300,7 +300,7 @@ class MLModelManager:
 
         return results
 
-    def save_models(self, path: Optional[Path] = None) -> bool:
+    def save_models(self, path: Path | None = None) -> bool:
         """Save trained models to disk.
 
         Args:
@@ -347,7 +347,7 @@ class MLModelManager:
             logger.error(f"Error saving models: {e}")
             return False
 
-    def load_models(self, path: Optional[Path] = None) -> bool:
+    def load_models(self, path: Path | None = None) -> bool:
         """Load trained models from disk.
 
         Args:

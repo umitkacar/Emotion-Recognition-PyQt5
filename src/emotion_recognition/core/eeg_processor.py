@@ -1,8 +1,6 @@
 """EEG data processing and management."""
 
 import pickle
-from pathlib import Path
-from typing import Dict, List, Optional, Tuple
 
 import numpy as np
 from loguru import logger
@@ -21,7 +19,7 @@ class EEGProcessor:
             settings: Application settings
         """
         self.settings = settings
-        self._channel_map: Dict[str, int] = {
+        self._channel_map: dict[str, int] = {
             "AF3": 1,
             "F7": 3,
             "F3": 2,
@@ -42,16 +40,16 @@ class EEGProcessor:
         logger.info("EEGProcessor initialized")
 
     @property
-    def channel_map(self) -> Dict[str, int]:
+    def channel_map(self) -> dict[str, int]:
         """Get channel name to index mapping."""
         return self._channel_map.copy()
 
     @property
-    def active_channels(self) -> List[str]:
+    def active_channels(self) -> list[str]:
         """Get active channel names."""
         return self._active_channels.copy()
 
-    def set_active_channels(self, channels: List[str]) -> None:
+    def set_active_channels(self, channels: list[str]) -> None:
         """Set active channels for processing.
 
         Args:
@@ -64,7 +62,7 @@ class EEGProcessor:
         self._active_channels = channels
         logger.info(f"Active channels set to: {channels}")
 
-    def load_user_data(self, user_id: int) -> Optional[Dict]:
+    def load_user_data(self, user_id: int) -> dict | None:
         """Load EEG data for a specific user from DEAP dataset.
 
         Args:
@@ -94,9 +92,7 @@ class EEGProcessor:
             logger.error(f"Error loading data for user {user_id}: {e}")
             return None
 
-    def extract_trial_data(
-        self, user_data: Dict, trial_id: int, user_id: int
-    ) -> Optional[EEGData]:
+    def extract_trial_data(self, user_data: dict, trial_id: int, user_id: int) -> EEGData | None:
         """Extract EEG data for a specific trial.
 
         Args:
@@ -136,7 +132,7 @@ class EEGProcessor:
             return None
 
     def get_channel_data(
-        self, eeg_data: EEGData, channel_names: Optional[List[str]] = None
+        self, eeg_data: EEGData, channel_names: list[str] | None = None
     ) -> np.ndarray:
         """Extract specific channels from EEG data.
 
@@ -162,7 +158,7 @@ class EEGProcessor:
         self,
         data: np.ndarray,
         sampling_rate: int = 60,
-    ) -> Tuple[np.ndarray, np.ndarray]:
+    ) -> tuple[np.ndarray, np.ndarray]:
         """Compute FFT of EEG signal.
 
         Args:
@@ -202,10 +198,10 @@ class EEGProcessor:
 
     def process_raw_data_batch(
         self,
-        user_range: Tuple[int, int],
-        trial_range: Tuple[int, int] = (1, 40),
-        time_range: Tuple[int, int] = (384, 8064),
-    ) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+        user_range: tuple[int, int],
+        trial_range: tuple[int, int] = (1, 40),
+        time_range: tuple[int, int] = (384, 8064),
+    ) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
         """Process batch of raw EEG data.
 
         Args:
@@ -225,8 +221,7 @@ class EEGProcessor:
         start_time, end_time = time_range
 
         logger.info(
-            f"Processing batch: users {start_user}-{end_user}, "
-            f"trials {start_trial}-{end_trial}"
+            f"Processing batch: users {start_user}-{end_user}, " f"trials {start_trial}-{end_trial}"
         )
 
         for user_id in range(start_user, end_user + 1):
@@ -262,9 +257,7 @@ class EEGProcessor:
         logger.info(f"Processed {len(data_list)} samples. Shape: {data_array.shape}")
         return data_array, valence_array, arousal_array
 
-    def labels_to_binary(
-        self, labels: np.ndarray, threshold: Optional[float] = None
-    ) -> np.ndarray:
+    def labels_to_binary(self, labels: np.ndarray, threshold: float | None = None) -> np.ndarray:
         """Convert continuous labels to binary classification.
 
         Args:

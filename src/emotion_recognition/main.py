@@ -1,7 +1,6 @@
 """Main application entry point."""
 
 import sys
-from pathlib import Path
 
 from loguru import logger
 from PyQt6.QtWidgets import QApplication

@@ -11,4 +11,4 @@ __email__ = "info@aiatus.com"
 
 from emotion_recognition.config import Settings, get_settings
 
-__all__ = ["__version__", "__author__", "__email__", "Settings", "get_settings"]
+__all__ = ["Settings", "__author__", "__email__", "__version__", "get_settings"]

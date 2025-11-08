@@ -59,7 +59,6 @@ dev = [
     "ruff>=0.1.9",
     "mypy>=1.7.0",
     "pre-commit>=3.6.0",
-    "types-opencv-python",
 ]
 
 [project.scripts]
@@ -215,9 +214,6 @@ addopts = [
     "--strict-markers",
     "--strict-config",
     "-ra",
-    "--cov=emotion_recognition",
-    "--cov-report=term-missing",
-    "--cov-report=html",
 ]
 testpaths = ["tests"]
 pythonpath = ["src"]
