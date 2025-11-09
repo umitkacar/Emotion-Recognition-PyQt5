@@ -1,7 +1,6 @@
 """Comprehensive production test suite for emotion recognition system."""
 
 import sys
-from pathlib import Path
 
 import numpy as np
 
@@ -86,11 +85,7 @@ def test_eeg_models():
 def test_face_models():
     """Test face detection models."""
     print("\n=== Testing Face Models ===")
-    from emotion_recognition.models.face import (
-        BoundingBox,
-        FaceDetection,
-        FaceDetectionResult,
-    )
+    from emotion_recognition.models.face import BoundingBox, FaceDetection, FaceDetectionResult
 
     # Test BoundingBox
     bbox = BoundingBox(x=100, y=150, width=200, height=250)
@@ -235,9 +230,8 @@ def main():
     if failed == 0:
         print("\n✅ ALL TESTS PASSED - READY FOR PRODUCTION!")
         return 0
-    else:
-        print(f"\n❌ {failed} TESTS FAILED - FIX BEFORE PRODUCTION")
-        return 1
+    print(f"\n❌ {failed} TESTS FAILED - FIX BEFORE PRODUCTION")
+    return 1
 
 
 if __name__ == "__main__":
