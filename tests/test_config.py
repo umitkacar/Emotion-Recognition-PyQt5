@@ -1,12 +1,14 @@
 """Tests for configuration module."""
 
-import pytest
 from pathlib import Path
+
+import pytest
+from pydantic import ValidationError
 
 from emotion_recognition.config import Settings, get_settings
 
 
-def test_settings_default_values():
+def test_settings_default_values() -> None:
     """Test that settings have correct default values."""
     settings = Settings()
 
@@ -16,7 +18,7 @@ def test_settings_default_values():
     assert settings.log_level == "INFO"
 
 
-def test_settings_path_validation():
+def test_settings_path_validation() -> None:
     """Test that paths are validated and converted correctly."""
     settings = Settings()
 
@@ -25,17 +27,17 @@ def test_settings_path_validation():
     assert isinstance(settings.logs_dir, Path)
 
 
-def test_settings_field_constraints():
+def test_settings_field_constraints() -> None:
     """Test that field constraints are enforced."""
     # Label threshold should be between 1 and 9
-    with pytest.raises(Exception):
+    with pytest.raises(ValidationError):
         Settings(label_threshold=0.5)
 
-    with pytest.raises(Exception):
+    with pytest.raises(ValidationError):
         Settings(label_threshold=10.0)
 
 
-def test_get_settings_cached():
+def test_get_settings_cached() -> None:
     """Test that get_settings returns cached instance."""
     settings1 = get_settings()
     settings2 = get_settings()
@@ -43,7 +45,7 @@ def test_get_settings_cached():
     assert settings1 is settings2
 
 
-def test_create_directories(tmp_path):
+def test_create_directories(tmp_path: Path) -> None:
     """Test directory creation."""
     settings = Settings(
         data_dir=tmp_path / "data",

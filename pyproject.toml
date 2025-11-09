@@ -53,12 +53,15 @@ dependencies = [
 dev = [
     "pytest>=7.4.0",
     "pytest-cov>=4.1.0",
+    "pytest-xdist>=3.5.0",
     "pytest-qt>=4.2.0",
     "pytest-mock>=3.12.0",
+    "pytest-timeout>=2.2.0",
     "black>=23.12.0",
     "ruff>=0.1.9",
     "mypy>=1.7.0",
     "pre-commit>=3.6.0",
+    "coverage[toml]>=7.4.0",
 ]
 
 [project.scripts]
@@ -88,14 +91,23 @@ packages = ["src/emotion_recognition"]
 dependencies = [
     "pytest",
     "pytest-cov",
+    "pytest-xdist",
     "pytest-qt",
+    "pytest-timeout",
+    "coverage[toml]",
 ]
 
 [tool.hatch.envs.default.scripts]
 test = "pytest {args:tests}"
+test-fast = "pytest -n auto {args:tests}"
 test-cov = "pytest --cov=emotion_recognition --cov-report=term-missing {args:tests}"
+test-cov-fast = "pytest -n auto --cov=emotion_recognition --cov-report=term-missing {args:tests}"
 cov-report = [
-    "pytest --cov=emotion_recognition --cov-report=html",
+    "pytest --cov=emotion_recognition --cov-report=html --cov-report=term",
+]
+test-all = [
+    "test-fast",
+    "cov-report",
 ]
 
 [tool.hatch.envs.lint]
@@ -217,6 +229,8 @@ addopts = [
     "--strict-markers",
     "--strict-config",
     "-ra",
+    "--tb=short",
+    "-p", "no:pytest_qt",
 ]
 testpaths = ["tests"]
 pythonpath = ["src"]
@@ -225,6 +239,8 @@ markers = [
     "integration: marks tests as integration tests",
     "unit: marks tests as unit tests",
 ]
+timeout = 300
+timeout_func_only = true
 
 # Coverage configuration
 [tool.coverage.run]
