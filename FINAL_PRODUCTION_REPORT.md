@@ -322,6 +322,4 @@ ______________________________________________________________________
 
 **✨ Ultra-Modern Production-Grade Emotion Recognition System ✨**
 
-**AIATUS - Advanced AI and Information Technologies**
-
 </div>
