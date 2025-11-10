@@ -307,6 +307,4 @@ You now have an **ultra-modern, professional, production-ready** emotion recogni
 
 Made with ❤️ and attention to detail
 
-**AIATUS - Advanced AI and Information Technologies**
-
 </div>

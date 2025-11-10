@@ -1445,7 +1445,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ```
 MIT License
 
-Copyright (c) 2025 AIATUS - Advanced AI and Information Technologies
+Copyright (c) 2025 Emotion Recognition Project Contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -1505,8 +1505,6 @@ SOFTWARE.
 
 ## 📧 Contact
 
-**AIATUS** - Advanced AI and Information Technologies
-
 - **GitHub**: [@umitkacar](https://github.com/umitkacar)
 - **Repository**: [Emotion-Recognition-PyQt5](https://github.com/umitkacar/Emotion-Recognition-PyQt5)
 - **Issues**: [GitHub Issues](https://github.com/umitkacar/Emotion-Recognition-PyQt5/issues)
@@ -1523,8 +1521,6 @@ For questions and support, please open an issue on GitHub.
 ---
 
 <div align="center">
-
-**Made with ❤️ by AIATUS**
 
 ⭐ **Star this repository if you find it helpful!**
 
