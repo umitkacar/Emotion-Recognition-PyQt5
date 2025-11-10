@@ -2,6 +2,7 @@
 
 import numpy as np
 import pytest
+from pydantic import ValidationError
 
 from emotion_recognition.models.eeg import EEGData, EmotionLabel
 from emotion_recognition.models.face import BoundingBox, FaceDetection
@@ -10,7 +11,7 @@ from emotion_recognition.models.face import BoundingBox, FaceDetection
 class TestEmotionLabel:
     """Tests for EmotionLabel model."""
 
-    def test_valid_emotion_label(self):
+    def test_valid_emotion_label(self) -> None:
         """Test creating a valid emotion label."""
         label = EmotionLabel(valence=5.0, arousal=6.0, dominance=4.0, liking=7.0)
 
@@ -19,15 +20,15 @@ class TestEmotionLabel:
         assert label.dominance == 4.0
         assert label.liking == 7.0
 
-    def test_emotion_label_out_of_range(self):
+    def test_emotion_label_out_of_range(self) -> None:
         """Test that out-of-range values are rejected."""
-        with pytest.raises(Exception):
+        with pytest.raises(ValidationError):
             EmotionLabel(valence=0.0, arousal=5.0, dominance=5.0, liking=5.0)
 
-        with pytest.raises(Exception):
+        with pytest.raises(ValidationError):
             EmotionLabel(valence=5.0, arousal=10.0, dominance=5.0, liking=5.0)
 
-    def test_to_binary(self):
+    def test_to_binary(self) -> None:
         """Test binary conversion."""
         label = EmotionLabel(valence=6.0, arousal=4.0, dominance=5.0, liking=5.0)
 
@@ -40,7 +41,7 @@ class TestEmotionLabel:
 class TestEEGData:
     """Tests for EEGData model."""
 
-    def test_valid_eeg_data(self):
+    def test_valid_eeg_data(self) -> None:
         """Test creating valid EEG data."""
         data = np.random.randn(40, 8064)
         label = EmotionLabel(valence=5.0, arousal=6.0, dominance=4.0, liking=7.0)
@@ -51,19 +52,19 @@ class TestEEGData:
         assert eeg.user_id == 1
         assert eeg.trial_id == 1
 
-    def test_invalid_data_shape(self):
+    def test_invalid_data_shape(self) -> None:
         """Test that 1D data is rejected."""
         data = np.random.randn(8064)
         label = EmotionLabel(valence=5.0, arousal=6.0, dominance=4.0, liking=7.0)
 
-        with pytest.raises(Exception):
+        with pytest.raises(ValidationError):
             EEGData(data=data, label=label, user_id=1, trial_id=1)
 
 
 class TestBoundingBox:
     """Tests for BoundingBox model."""
 
-    def test_valid_bounding_box(self):
+    def test_valid_bounding_box(self) -> None:
         """Test creating a valid bounding box."""
         box = BoundingBox(x=10, y=20, width=100, height=150)
 
@@ -72,7 +73,7 @@ class TestBoundingBox:
         assert box.width == 100
         assert box.height == 150
 
-    def test_bounding_box_methods(self):
+    def test_bounding_box_methods(self) -> None:
         """Test bounding box utility methods."""
         box = BoundingBox(x=10, y=20, width=100, height=150)
 
@@ -84,7 +85,7 @@ class TestBoundingBox:
 class TestFaceDetection:
     """Tests for FaceDetection model."""
 
-    def test_valid_face_detection(self):
+    def test_valid_face_detection(self) -> None:
         """Test creating a valid face detection."""
         box = BoundingBox(x=10, y=20, width=100, height=150)
         face = FaceDetection(box=box, confidence=0.95)
@@ -92,9 +93,9 @@ class TestFaceDetection:
         assert face.box == box
         assert face.confidence == 0.95
 
-    def test_invalid_confidence(self):
+    def test_invalid_confidence(self) -> None:
         """Test that invalid confidence values are rejected."""
         box = BoundingBox(x=10, y=20, width=100, height=150)
 
-        with pytest.raises(Exception):
+        with pytest.raises(ValidationError):
             FaceDetection(box=box, confidence=1.5)
